@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component-set>
+	<components>
+		<component>
+			<role>org.apache.maven.artifact.handler.ArtifactHandler</role>
+			<role-hint>projlib</role-hint>
+			<implementation>
+				org.apache.maven.artifact.handler.DefaultArtifactHandler
+			</implementation>
+			<configuration>
+				<type>projlib</type>
+				<extension>projlib</extension>
+				<packaging>projlib</packaging>
+				<language>tibco</language>
+				<addedToClasspath>true</addedToClasspath>
+				<includesDependencies>true</includesDependencies>
+			</configuration>
+		</component>
+		<component>
+			<role>org.apache.maven.artifact.handler.ArtifactHandler</role>
+			<role-hint>bw-ear</role-hint>
+			<implementation>
+				org.apache.maven.artifact.handler.DefaultArtifactHandler
+			</implementation>
+			<configuration>
+				<extension>ear</extension>
+				<type>bw-ear</type>
+				<packaging>bw-ear</packaging>
+				<language>tibco</language>
+				<addedToClasspath>true</addedToClasspath>
+				<includesDependencies>true</includesDependencies>
+			</configuration>
+		</component>
+	</components>
+</component-set>	

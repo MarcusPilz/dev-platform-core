@@ -1,0 +1,93 @@
+<!-- https://svn.apache.org/viewvc/maven/maven-3/trunk/maven-core/src/main/resources/META-INF/plexus/components.xml?view=log -->
+<component-set>
+	<components>
+		<component>
+			<role>org.apache.maven.lifecycle.mapping.LifecycleMapping</role>
+			<role-hint>projlib</role-hint>
+			<implementation>org.apache.maven.lifecycle.mapping.DefaultLifecycleMapping
+			</implementation>
+			<configuration>
+				<lifecycles>
+					<lifecycle>
+						<id>default</id>
+						<phases>
+							<generate-sources>
+								com.dbsystel.platform.dev:tibco-source-plugin:generate-sources
+							</generate-sources>
+							<process-sources>
+								com.dbsystel.platform.dev:tibco-source-plugin:process-sources,
+								org.apache.maven.plugins:maven-resources-plugin:resources
+							</process-sources>
+							<process-resources>
+								com.dbsystel.platform.dev:tibco-source-plugin:update-alias-lib
+							</process-resources>
+							<compile>
+								com.dbsystel.platform.dev:tibco-compiler-plugin:compile
+							</compile>
+							<package>
+								com.dbsystel.platform.dev:tibco-ear-plugin:package-projlib
+							</package>
+							<install>
+								org.apache.maven.plugins:maven-install-plugin:install
+							</install>
+							<deploy>
+								org.apache.maven.plugins:maven-deploy-plugin:deploy
+							</deploy>
+						</phases>
+					</lifecycle>
+				</lifecycles>
+			</configuration>
+		</component>
+		<component>
+			<role>org.apache.maven.lifecycle.mapping.LifecycleMapping</role>
+			<role-hint>bw-ear</role-hint>
+			<implementation>org.apache.maven.lifecycle.mapping.DefaultLifecycleMapping
+			</implementation>
+			<configuration>
+				<lifecycles>
+					<lifecycle>
+						<id>default</id>
+						<phases>
+							<initialize>
+								com.dbsystel.platform.dev:dev-platform-core:initialize
+							</initialize>
+							<validate>
+								com.dbsystel.platform.dev:dev-platform-core:validate
+							</validate>
+							<generate-sources>
+								com.dbsystel.platform.dev:tibco-source-plugin:generate-sources
+							</generate-sources>
+							<process-sources>
+								com.dbsystel.platform.dev:tibco-source-plugin:process-sources,
+								org.apache.maven.plugins:maven-resources-plugin:resources
+							</process-sources>
+							<process-resources>
+								com.dbsystel.platform.dev:tibco-source-plugin:update-alias-lib
+							</process-resources>
+							<compile>
+								com.dbsystel.platform.dev:tibco-compiler-plugin:compile
+							</compile>
+							<package>
+								com.dbsystel.platform.dev:tibco-ear-plugin:bw-ear
+							</package>
+							<install>
+								com.dbsystel.platform.dev:tibco-install-plugin:generate-config,
+								<!-- com.dbsystel.platform.dev:tibco-install-plugin:generate-properties, -->
+								com.dbsystel.platform.dev:tibco-install-plugin:generate-deployment-descriptor,
+								com.dbsystel.platform.dev:tibco-install-plugin:deploy-bw,
+								org.apache.maven.plugins:maven-install-plugin:install
+							</install>
+							<deploy>
+								org.apache.maven.plugins:maven-deploy-plugin:deploy
+							</deploy>							
+						</phases>
+					</lifecycle>
+				</lifecycles>
+			</configuration>
+		</component>
+
+	</components>
+
+</component-set>
+
+ 
